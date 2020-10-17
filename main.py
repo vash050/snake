@@ -1,47 +1,35 @@
 import pygame
-import os
+import objct
 
-# Инициализация PyGame
-
+from pygame.draw import *
 pygame.init()
+point_start = 100
+speed = 1
 
-# Окно игры: размер, позиция
-
-gameScreen = pygame.display.set_mode((400, 300))
-
-# модуль os - позиция окна
+screen = pygame.display.set_mode((1000, 600))
 
 
-x = 100
+user_snake = objct.SnakeUser(screen, 100, 100)
 
-y = 100
 
-os.environ['Sp_VIDEO_WINDOW_POS'] = "%d,%d" % (x, y)
+clock = pygame.time.Clock()
+flag = True
+point = point_start
+speed_game = speed
 
-# параметры окна
-
-size = [1000, 700]
-
-screen = pygame.display.set_mode(size)
-
-pygame.display.set_caption("Test drawings")
-
-gameScreen.fill((0, 0, 255))
-
-pygame.display.flip()
-
-#
-# Цикл игры, выход из игры
-#
-# Цикл игры
-
-runGame = True  # флаг выходв из цикла игры
-
-while runGame:
-
-    # Отслеживание события: "закрыть окно"
-
+while flag:
     for event in pygame.event.get():
-        if event.type == pygame.QUIT: runGame = False
+        if event.type == pygame.QUIT:
+            flag = False
+    screen.fill((0, 255, 255))
 
-    # Выход из игры: pygame.quit()
+    user_snake.snake_move(point)
+    point = point + speed_game
+
+    pygame.display.flip()
+    clock.tick(30)
+
+pygame.quit()
+
+
+
