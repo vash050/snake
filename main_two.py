@@ -15,10 +15,16 @@ start_y = 100
 
 start_snake_speed = 1
 img = pygame.image.load('img/beetle.png')
+img_snake = [pygame.image.load('img/head_snake.png'),
+             pygame.image.load('img/body_snake_r.png'),
+             pygame.image.load('img/body_snake_l.png'),
+             pygame.image.load('img/tail_snake_r.png'),
+             pygame.image.load('img/tail_snake_l.png'),
+             ]
 
 display = pygame.display.set_mode((width, height))
 
-user_snake = Snake(display)
+user_snake = Snake(display, img_snake)
 
 clock = pygame.time.Clock()
 
